@@ -2,23 +2,22 @@
 <html>
 <head>
 	<title></title>
-	<script src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="fine-uploader/fineUploader.min.js"></script>
+	<script type="text/javascript" src="fine-uploader/fineUploaderCore.js"></script>
 </head>
 <body>
 <div id="upload_element" style="background-color:#608628;width:100px;border-radius:5px;font-weight:bold;text-align:center;"><b>Upload File</div>
 
 <script type="text/javascript">
-	$(document).ready(function() {
 	var thumbnailuploader = new qq.FineUploaderBasic({
-	  button: $('#upload_element')[0],
+	  button: document.getElementById("upload_element"),
 	  request: {
 	    endpoint: 'fine-uploader/endpoint.php'
 	  },
-	  multiple: false,
+	  multiple: true,
 	  validation: {
 	    allowedExtensions: ['jpeg', 'jpg', 'gif', 'png'],
-	    sizeLimit: 51200 // 50 kB = 50 * 1024 bytes
+	    sizeLimit: 51200, // 50 kB = 50 * 1024 bytes
+	    itemLimit: 2,
 	  },
 	  callbacks: {
 	    onComplete: function(id, fileName, responseJSON) {
@@ -27,7 +26,6 @@
 	      }
 	    }
 	  }
-	});
 	});
 </script>
 </body>
